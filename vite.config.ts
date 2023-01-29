@@ -10,7 +10,13 @@ export default defineConfig({
   plugins: [react()],
   test: {
     globals: true,
-    environment: 'jsdom',
-    setupFiles: ['./src/setupTests.ts'],
+    environment: 'node',
+    setupFiles: ['./src/utils/test/setupTests.ts'],
+    environmentMatchGlobs: [
+      // all tests with .domspec.tsx will run in jsdom
+      ['**/*.domspec.ts', 'jsdom'],
+      ['**/*.domspec.tsx', 'jsdom'],
+      ['**/*.test.tsx', 'jsdom'],
+    ],
   },
 });

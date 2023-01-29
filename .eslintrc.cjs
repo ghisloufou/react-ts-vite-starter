@@ -21,5 +21,18 @@ module.exports = {
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
     'react/react-in-jsx-scope': 0,
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: [
+          'test.{js,jsx,ts,tsx}', // repos with a single test file
+          'test-*.{js,jsx,ts,tsx}', // repos with multiple top-level test files
+          '**/test-utils.tsx',
+          '**/setupTests.ts',
+          '**/*{.,_}{test,spec,domspec}.{js,jsx,ts,tsx}', // tests where the extension or filename suffix denotes that it is a test
+        ],
+        optionalDependencies: false,
+      },
+    ],
   },
 };
